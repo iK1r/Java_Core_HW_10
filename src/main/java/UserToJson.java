@@ -45,7 +45,9 @@ public class UserToJson {
         }
     }
 
-    public static void main(String[] args) {
-        createJson("task2/file.txt", "task2/user.json");
-    }
+public static void main(String[] args) {
+    createJson(
+            "src/main/resources/task2/file.txt",
+            "src/main/resources/task2/user.json"
+    );
 }
