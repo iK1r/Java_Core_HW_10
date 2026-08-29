@@ -1,29 +1,32 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class WordCounter {
 
     public static void countWords(String fileName) {
         Map<String, Integer> wordCount = new HashMap<>();
 
-        try (Scanner scanner = new Scanner(new File(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
 
-            while (scanner.hasNext()) {
-                String word = scanner.next();
+            while ((line = reader.readLine()) != null) {
+                String[] lineWords = line.split("\\s+");
 
-                if (wordCount.containsKey(word)) {
-                    wordCount.put(word, wordCount.get(word) + 1);
-                } else {
-                    wordCount.put(word, 1);
+                for (String word : lineWords) {
+                    if (wordCount.containsKey(word)) {
+                        wordCount.put(word, wordCount.get(word) + 1);
+                    } else {
+                        wordCount.put(word, 1);
+                    }
                 }
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
