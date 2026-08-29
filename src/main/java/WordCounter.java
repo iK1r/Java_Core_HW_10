@@ -51,4 +51,5 @@ public class WordCounter {
 
 public static void main(String[] args) {
     countWords("src/main/resources/task3/words.txt");
+    }
 }
