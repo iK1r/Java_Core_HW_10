@@ -50,4 +50,5 @@ public static void main(String[] args) {
             "src/main/resources/task2/file.txt",
             "src/main/resources/task2/user.json"
     );
+    }
 }
