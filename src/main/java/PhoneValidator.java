@@ -23,4 +23,5 @@ public class PhoneValidator {
 
 public static void main(String[] args) {
     printValidPhones("src/main/resources/task1/file.txt");
+    }
 }
