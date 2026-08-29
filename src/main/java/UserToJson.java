@@ -1,27 +1,24 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class UserToJson {
 
     public static void createJson(String inputFile, String outputFile) {
         List<User> users = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(new File(inputFile))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+            reader.readLine();
 
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
-            }
+            String line;
 
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+            while ((line = reader.readLine()) != null) {
                 String[] data = line.split("\\s+");
 
                 String name = data[0];
@@ -30,7 +27,7 @@ public class UserToJson {
                 users.add(new User(name, age));
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
