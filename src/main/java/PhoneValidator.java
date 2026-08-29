@@ -1,15 +1,14 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class PhoneValidator {
 
     public static void printValidPhones(String fileName) {
-        try (Scanner scanner = new Scanner(new File(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String phone;
 
-            while (scanner.hasNextLine()) {
-                String phone = scanner.nextLine();
-
+            while ((phone = reader.readLine()) != null) {
                 if (phone.matches("\\d{3}-\\d{3}-\\d{4}")
                         || phone.matches("\\(\\d{3}\\) \\d{3}-\\d{4}")) {
 
@@ -17,7 +16,7 @@ public class PhoneValidator {
                 }
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
